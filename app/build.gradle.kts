@@ -41,7 +41,9 @@ android {
 }
 
 dependencies {
-
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.9.2")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.6.2")
+    implementation("androidx.activity:activity-ktx:1.10.1")
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
