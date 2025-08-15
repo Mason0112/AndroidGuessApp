@@ -2,16 +2,22 @@ package com.mason.test
 
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.mason.test.databinding.ActivityMain2Binding
 
 class Main2Activity : AppCompatActivity() {
 
+    private val TAG  = this.javaClass.simpleName
     private lateinit var binding: ActivityMain2Binding
     private lateinit var viewModel: GuessNumberViewModel
+
+    private val contract = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()){ result ->
+
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,12 +61,12 @@ class Main2Activity : AppCompatActivity() {
     }
 
     private fun setupClickListeners() {
-        binding.guessButton.setOnClickListener { guess(it) }
+        binding.guessButton.setOnClickListener { guess() }
         binding.newGameButton.setOnClickListener { startNewGame() }
 
-        // 按 Enter 鍵也可以猜測
+        // 按 Enter 鍵也可以猜測8
         binding.number.setOnEditorActionListener { _, _, _ ->
-            guess(binding.guessButton)
+            guess()
             true
         }
     }
@@ -71,7 +77,7 @@ class Main2Activity : AppCompatActivity() {
         binding.number.requestFocus()
     }
 
-    fun guess(view: View) {
+    fun guess() {
         val num = binding.number.text.toString()
         viewModel.makeGuess(num)
 

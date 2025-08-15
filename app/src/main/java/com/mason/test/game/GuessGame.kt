@@ -21,7 +21,7 @@ class GuessGame {
         startNewGame()
     }
     // 開始新遊戲
-    fun startNewGame() {
+    fun startNewGame() {1
         targetNumber = (minNumber..maxNumber).random()
         guessCount = 0
         isGameOver = false
